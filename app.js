@@ -1,6 +1,22 @@
 const express = require('express');
-const nodemon = require('nodemon');
 const morgan = require('morgan');
 
 const app = express();
-app.use();
+
+//Development
+app.use(morgan('short'));
+
+//Public folder
+app.use(express.static('public'));
+
+//Parse incoming JSON
+app.use(
+    express.urlencoded({
+        extended: true
+    })
+);
+
+app.set('port', 8080);
+app.listen(8080, () => {
+    console.log('Webhook is listening');
+});
