@@ -9,7 +9,7 @@ const express = require('express');
 const morgan = require('morgan');
 
 //Logger
-const log = require('./log.js');
+const log = require('./config/log.js');
 const routes = require('./routes/index.js');
 
 const app = express();

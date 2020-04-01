@@ -4,7 +4,10 @@
     "description": "Program that integrates with Spotify and Twitter to get and  post songs chosen by the user.",
     "main": "app.js",
     "scripts": {
-        "debug": "nodemon app.js"
+        "heroku-postbuild": "npm run install-server",
+        "install-server": "npm install",
+        "debug": "nodemon app.js --exec \"npm run lint && node\"",
+        "lint": "node_modules/.bin/eslint **/*.js"
     },
     "author": "Alejo Kim Uy",
     "license": "ISC",
@@ -13,6 +16,7 @@
     },
     "devDependencies": {
         "dotenv": "^8.2.0",
+        "eslint": "^6.8.0",
         "morgan": "^1.10.0",
         "nodemon": "^2.0.2"
     }
