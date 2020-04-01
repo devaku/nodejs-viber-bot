@@ -3,6 +3,13 @@ const morgan = require('morgan');
 
 const app = express();
 
+//Load Development Variables
+if (process.env.NODE_ENV === undefined) {
+    require('dotenv').config();
+}
+
+const PORT = process.env.PORT;
+
 //Development
 app.use(morgan('short'));
 
@@ -16,7 +23,7 @@ app.use(
     })
 );
 
-app.set('port', 8080);
-app.listen(8080, () => {
-    console.log('Webhook is listening');
+app.set('port', PORT);
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
