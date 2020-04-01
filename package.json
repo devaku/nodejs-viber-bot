@@ -1,11 +1,14 @@
 {
-  "name": "song-lister",
-  "version": "1.0.0",
-  "description": "Program that integrates with Spotify and Twitter to get and  post songs chosen by the user.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Alejo Kim Uy",
-  "license": "ISC"
+    "name": "song-lister",
+    "version": "1.0.0",
+    "description": "Program that integrates with Spotify and Twitter to get and  post songs chosen by the user.",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Alejo Kim Uy",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
 }
