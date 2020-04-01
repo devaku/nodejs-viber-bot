@@ -30,6 +30,12 @@ app.use(
 //Set routes
 routes(app);
 
+//Set ejs as view engine
+app.set('view engine', 'ejs');
+app.set('view options', {
+    delimiter: '?'
+});
+
 app.set('port', PORT);
 app.listen(PORT, () => {
     log.LogConsole(`Server is running at URL http://localhost:${PORT}`);
