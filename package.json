@@ -1,14 +1,12 @@
 {
     "name": "nodejs-viber-bot",
     "version": "1.0.0",
-    "description": "A NodeJS Viber Bot application developed by Alejo Kim Uy",
+    "description": "A simple NodeJS Viber Bot application",
     "main": "app.js",
     "scripts": {
-        "heroku-postbuild": "npm run install-server",
         "install-server": "npm install",
         "debug": "nodemon app.js --exec \"npm run lint && node\"",
         "debug-nolint": "nodemon app.js",
-        "quick-start": "",
         "lint": "eslint **/*.js"
     },
     "author": "Alejo Kim Uy",
