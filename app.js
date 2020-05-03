@@ -1,56 +1,28 @@
-let bot = '';
-let SERVER_URL = '';
-const ngrok = require('./lib_modules/utils/ngrokmodule.js');
-
 //Load Development Variables
 if (
     process.env.NODE_ENV === undefined ||
     process.env.NODE_ENV === 'DEVELOPMENT'
 ) {
     require('dotenv').config();
-    bot = require('./lib_modules/utils/viber/setupbot.js');
-} else {
-    bot = require('./lib_modules/utils/viber/setupbot.js');
-    SERVER_URL = process.env.SERVER_URL;
 }
 
-const PORT = process.env.PORT;
-const express = require('express');
-const morgan = require('morgan');
+// Initialize the Viber Bot
+let bot = require('./lib_modules/viber/botsetup.js');
+let SERVER_URL = process.env.SERVER_URL;
 
-const routes = require('./routes/index.js');
-const app = express();
+// Initialize Express
+const expresssetup = require('./lib_modules/utils/expressetup.js');
+const app = expresssetup.app;
+const PORT = expresssetup.PORT;
 
-// morgan logger
-app.use(morgan('short'));
+// Set routes
+require('./routes/index.js')(app, bot);
 
-// Public folder
-app.use(express.static('public'));
-
-// Parse incoming JSON
-app.use(
-    express.urlencoded({
-        extended: true,
-    })
-);
-
-//Set routes
-routes(app);
-
-app.use('/', bot.middleware(), (req, res) => {
-    console.log(req);
-    console.log(res);
-});
-
-//Set ejs as view engine
-app.set('view engine', 'ejs');
-app.set('view options', {
-    delimiter: '?',
-});
-
-app.set('port', PORT);
 app.listen(PORT, async function () {
-    SERVER_URL = await ngrok.GetNgrokUrl();
+    if (process.env.NODE_ENV === 'DEVELOPMENT') {
+        const ngrok = require('./lib_modules/utils/ngrokmodule.js');
+        SERVER_URL = await ngrok.GetNgrokUrl();
+    }
     bot.setWebhook(SERVER_URL);
     console.log(`Server is running at URL ${SERVER_URL}`);
 });
