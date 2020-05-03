@@ -7,8 +7,8 @@ if (
 }
 
 // Initialize the Viber Bot
-let bot = require('./lib_modules/viber/botsetup.js');
 let SERVER_URL = process.env.SERVER_URL;
+let bot = require('./lib_modules/viber/botsetup.js');
 
 // Initialize Express
 const expresssetup = require('./lib_modules/utils/expressetup.js');
@@ -23,6 +23,7 @@ app.listen(PORT, async function () {
         const ngrok = require('./lib_modules/utils/ngrokmodule.js');
         SERVER_URL = await ngrok.GetNgrokUrl();
     }
+    // Attach the Webhook
     bot.setWebhook(SERVER_URL);
     console.log(`Server is running at URL ${SERVER_URL}`);
 });
