@@ -1,4 +1,6 @@
-module.exports = function(app) {
-    const controllerPath = '../api/controllers';
-    app.use('/', require(`${controllerPath}/homeController.js`).router);
+module.exports = function (app, bot) {
+    app.use('/', bot.middleware(), (req, res) => {
+        console.log(req);
+        console.log(res);
+    });
 };

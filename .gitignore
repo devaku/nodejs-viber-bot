@@ -2,4 +2,5 @@
 debug
 .idea
 node_modules
+.eslintrc.json
 
